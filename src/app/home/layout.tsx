@@ -22,7 +22,7 @@ export default function HomeLayout({ children }: { children: React.ReactNode }) 
       </div>
 
       <div className="h-56 grid grid-cols-2 gap-4 my-4 mx-4 text-center">
-        <div className="bg-orange-100 hover:bg-orange-600 hover:text-[#fff]  rounded-lg text-orange-600 font-medium">
+        <div className="bg-orange-100 dark:hover:bg-green-500  hover:bg-orange-600 hover:text-[#fff]  rounded-lg text-orange-600 font-medium">
           01
         </div>
         <div className="bg-orange-100 rounded-lg text-orange-600 font-medium">02</div>
