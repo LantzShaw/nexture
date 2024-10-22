@@ -1,62 +1,50 @@
-// 'use client'
+import { AppSidebar } from "@/components/app-sidebar"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
 
-import { useEffect } from 'react'
-
-async function fetchData() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/dashboard/api`)
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  return response.json()
-}
-
-export default async function DashboardPage() {
-  //   useEffect(() => {
-  //     const fetchData = () => {
-  //       fetch('/dashboard/api').then(res => {
-  //         console.log('==========res=========', res)
-  //       })
-  //     }
-
-  //     fetchData()
-  //   }, [])
-
-  //   fetch('/dashboard/api').then(res => {
-  //     console.log('==========res=========', res)
-  //   })
-
-  //   const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-  //   const todos = await response.json()
-
-  //   let data = await fetch('https://api.vercel.app/blog')
-  //   let posts = await data.json()
-
-  const todos = await fetchData()
-
-  console.log('=====data=====', todos)
-
+export default function Page() {
   return (
-    <>
-      <h2>response</h2>
-    </>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink href="#">
+                  Building Your Application
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+          </div>
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   )
 }
-
-// export async function getServerSideProps() {
-//   const response = await fetch('/dashboard/api').then(res => {
-//     console.log('==========res=========', res)
-
-//     return res.json()
-//   })
-
-//   console.log('=======response=======', response)
-
-//   return {
-//     props: {
-//       message: 'Hello from server',
-//       data: response,
-//     },
-//   }
-// }
