@@ -1,0 +1,12 @@
+.wrap {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: 0fr;
+  background-color: #f40;
+  transition: 1s;
+}
+
+.active.wrap {
+  grid-template-rows: 1fr;
+  background-color: #000;
+}
